@@ -2,7 +2,6 @@
 	const CIRCUIT_WIDTH = 1100;
 	const CIRCUIT_HEIGHT = 113;
 	const PROGRESS_WIDTH = 64;
-	const ANIMATION_DURATION = 2000;
 
 	let leftGradientX = $state(CIRCUIT_WIDTH / 2 - PROGRESS_WIDTH);
 	let rightGradientX = $state(CIRCUIT_WIDTH / 2);
@@ -33,7 +32,7 @@
 	}
 
 	$effect(() => {
-		animateProgress();
+		setTimeout(animateProgress, 100);
 		return () => {
 			if (animationInterval) {
 				clearInterval(animationInterval);
@@ -101,7 +100,7 @@
 			<!-- Left progress -->
 			<rect
 				class={isAnimating
-					? `transition-all duration-[${ANIMATION_DURATION}ms] opacity-100 ease-linear`
+					? `opacity-100 transition-all duration-[2000ms] ease-linear`
 					: 'opacity-20'}
 				x={leftGradientX}
 				y="0"
@@ -112,7 +111,7 @@
 			<!-- Right progress -->
 			<rect
 				class={isAnimating
-					? `transition-all duration-[${ANIMATION_DURATION}ms] opacity-100 ease-linear`
+					? `opacity-100 transition-all duration-[2000ms] ease-linear`
 					: 'opacity-20'}
 				x={rightGradientX}
 				y="0"
