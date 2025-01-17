@@ -2,6 +2,7 @@
 	const CIRCUIT_WIDTH = 1100;
 	const CIRCUIT_HEIGHT = 113;
 	const PROGRESS_WIDTH = 64;
+	const ANIMATION_DURATION = 2000;
 
 	let leftGradientX = $state(CIRCUIT_WIDTH / 2 - PROGRESS_WIDTH);
 	let rightGradientX = $state(CIRCUIT_WIDTH / 2);
@@ -28,11 +29,11 @@
 				resetAnimation();
 				setTimeout(animateProgress, 100);
 			}
-		}, 5000);
+		}, 4000);
 	}
 
 	$effect(() => {
-		setTimeout(animateProgress, 100);
+		animateProgress();
 		return () => {
 			if (animationInterval) {
 				clearInterval(animationInterval);
@@ -99,7 +100,9 @@
 		<g mask="url(#circuit-mask)">
 			<!-- Left progress -->
 			<rect
-				class={isAnimating ? 'transition-all duration-[3000ms] ease-linear' : ''}
+				class={isAnimating
+					? `transition-all duration-[${ANIMATION_DURATION}ms] opacity-100 ease-linear`
+					: 'opacity-20'}
 				x={leftGradientX}
 				y="0"
 				width={PROGRESS_WIDTH}
@@ -108,7 +111,9 @@
 			/>
 			<!-- Right progress -->
 			<rect
-				class={isAnimating ? 'transition-all duration-[3000ms] ease-linear' : ''}
+				class={isAnimating
+					? `transition-all duration-[${ANIMATION_DURATION}ms] opacity-100 ease-linear`
+					: 'opacity-20'}
 				x={rightGradientX}
 				y="0"
 				width={PROGRESS_WIDTH}
